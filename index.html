@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru" class="lang-ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdMan — рекламный помощник для малого бизнеса</title>
+<meta name="description" content="AdMan помогает малому бизнесу понять, стоит ли начинать рекламу, подготовить кампанию в Google Ads и Meta и увидеть результат простым языком.">
+<style>
+:root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{font-weight:700;font-size:19px;letter-spacing:-.02em}
+.langs{display:flex;gap:4px}
+.langs button{border:1px solid var(--line);background:#fff;color:var(--muted);font:600 12px/1 inherit;padding:7px 11px;border-radius:6px;cursor:pointer}
+.langs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.03em;margin:56px 0 18px}
+h2{font-size:20px;letter-spacing:-.02em;margin:44px 0 12px}
+p{margin:0 0 16px}
+.lead{font-size:19px;color:var(--muted)}
+ol,ul{margin:0 0 16px;padding-left:22px}
+li{margin-bottom:10px}
+.note{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0;background:#f8f9fb}
+.note p:last-child{margin-bottom:0}
+.status{display:inline-block;font:600 12px/1 inherit;color:var(--accent);background:#eef2ff;border-radius:99px;padding:7px 12px;margin-bottom:8px}
+a{color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;color:var(--muted);font-size:14px}
+footer a{margin-right:18px}
+.lang-ru [lang=en],.lang-en [lang=ru]{display:none}
+@media(max-width:520px){h1{font-size:27px;margin-top:40px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <div class="logo">AdMan</div>
+    <div class="langs">
+      <button onclick="setLang('ru')" id="b-ru" class="on">RU</button>
+      <button onclick="setLang('en')" id="b-en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div lang="ru">
+  <span class="status">В разработке · ранний доступ</span>
+  <h1>Реклама для малого бизнеса, объяснённая нормальным языком</h1>
+  <p class="lead">AdMan помогает владельцу небольшого бизнеса понять, стоит ли вообще начинать рекламу, подготовить кампанию в Google Ads или Instagram и увидеть, что из этого вышло — без агентства и без рекламного жаргона.</p>
+
+  <h2>Что он делает</h2>
+  <ul>
+    <li><strong>Считает спрос до того, как потрачен первый тенге.</strong> Сколько людей ищут то, что вы продаёте, сколько примерно стоит клик, есть ли смысл начинать.</li>
+    <li><strong>Готовит кампанию и объясняет каждое решение.</strong> Почему выбрана эта площадка, эти ключевые слова, этот бюджет — понятным текстом, а не набором настроек.</li>
+    <li><strong>Показывает результат.</strong> Что происходит с рекламой и что с этим делать дальше.</li>
+  </ul>
+
+  <h2>Как это работает</h2>
+  <ol>
+    <li>Вы заходите в AdMan под своей почтой и паролем.</li>
+    <li>Подключаете свой рекламный кабинет Google Ads или Meta — через официальную авторизацию площадки. Кабинет остаётся вашим.</li>
+    <li>Разбираете предложение AdMan, правите что нужно и подтверждаете. Только после вашего подтверждения кампания создаётся.</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>Деньги за рекламу вы платите площадке напрямую</strong>, со своего кабинета и своей картой. AdMan не принимает и не распоряжается вашим рекламным бюджетом.</p>
+    <p><strong>Ничего не публикуется без вашего подтверждения.</strong> AdMan предлагает и обосновывает, решение принимает человек.</p>
+  </div>
+
+  <h2>Кто за этим стоит</h2>
+  <p>AdMan — продукт независимого разработчика из Казахстана. Сейчас он в разработке: идёт закрытая проверка на первых пользователях. Если хотите попробовать раньше остальных или у вас есть вопрос — напишите на <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>.</p>
+</div>
+
+<div lang="en">
+  <span class="status">In development · early access</span>
+  <h1>Advertising for small businesses, explained in plain language</h1>
+  <p class="lead">AdMan helps a small business owner find out whether advertising is worth starting at all, prepare a campaign on Google Ads or Instagram, and see what came of it — without an agency and without the jargon.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li><strong>Measures demand before a single tenge is spent.</strong> How many people search for what you sell, roughly what a click costs, whether it makes sense to start.</li>
+    <li><strong>Prepares a campaign and explains every decision.</strong> Why this platform, these keywords, this budget — in words, not in a wall of settings.</li>
+    <li><strong>Shows the outcome.</strong> What is happening with the ads and what to do next.</li>
+  </ul>
+
+  <h2>How it works</h2>
+  <ol>
+    <li>You sign in to AdMan with your own email and password.</li>
+    <li>You connect your own Google Ads or Meta advertising account through the platform's official authorization. The account stays yours.</li>
+    <li>You review what AdMan proposes, change what you want, and confirm. The campaign is created only after your confirmation.</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>You pay the advertising platform directly</strong>, from your own account and your own card. AdMan never receives or controls your advertising budget.</p>
+    <p><strong>Nothing is published without your confirmation.</strong> AdMan proposes and justifies; a human decides.</p>
+  </div>
+
+  <h2>Who is behind it</h2>
+  <p>AdMan is built by an independent developer based in Kazakhstan. It is currently in development and being tested with a small group of first users. To try it early or to ask a question, write to <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>.</p>
+</div>
+
+</main>
+
+<footer class="wrap">
+  <div lang="ru">
+    <a href="privacy.html">Политика конфиденциальности</a>
+    <a href="terms.html">Условия использования</a>
+    <a href="mailto:softispower@gmail.com">Написать нам</a>
+    <p>© 2026 AdMan · Казахстан</p>
+  </div>
+  <div lang="en">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="mailto:softispower@gmail.com">Contact</a>
+    <p>© 2026 AdMan · Kazakhstan</p>
+  </div>
+</footer>
+
+<script>
+function setLang(l){
+  document.documentElement.className='lang-'+l;
+  document.documentElement.lang=l;
+  document.getElementById('b-ru').className=l==='ru'?'on':'';
+  document.getElementById('b-en').className=l==='en'?'on':'';
+}
+if((navigator.language||'').slice(0,2)!=='ru')setLang('en');
+</script>
+</body>
+</html>
