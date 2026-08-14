@@ -1,121 +1,230 @@
 <!DOCTYPE html>
-<html lang="ru" class="lang-ru">
+<html lang="en" class="lang-en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AdMan — рекламный помощник для малого бизнеса</title>
-<meta name="description" content="AdMan помогает малому бизнесу понять, стоит ли начинать рекламу, подготовить кампанию в Google Ads и Meta и увидеть результат простым языком.">
+<title>AdMan — Google Ads and Instagram advertising for small businesses</title>
+<meta name="description" content="AdMan is an advertising assistant for small business owners in Kazakhstan. It researches demand before you spend, builds and runs Google Ads Search campaigns in your own account, and reports results in plain language.">
 <style>
-:root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff}
+:root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff;--soft:#f8f9fb}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
 header{border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
-.logo{font-weight:700;font-size:19px;letter-spacing:-.02em}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+.logo{font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.navright{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+nav a:hover{color:var(--accent)}
 .langs{display:flex;gap:4px}
 .langs button{border:1px solid var(--line);background:#fff;color:var(--muted);font:600 12px/1 inherit;padding:7px 11px;border-radius:6px;cursor:pointer}
 .langs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
-h1{font-size:34px;line-height:1.2;letter-spacing:-.03em;margin:56px 0 18px}
-h2{font-size:20px;letter-spacing:-.02em;margin:44px 0 12px}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.03em;margin:52px 0 18px}
+h2{font-size:21px;letter-spacing:-.02em;margin:48px 0 14px}
+h3{font-size:16px;margin:26px 0 6px}
 p{margin:0 0 16px}
 .lead{font-size:19px;color:var(--muted)}
 ol,ul{margin:0 0 16px;padding-left:22px}
 li{margin-bottom:10px}
-.note{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0;background:#f8f9fb}
+.note{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0;background:var(--soft)}
 .note p:last-child{margin-bottom:0}
 .status{display:inline-block;font:600 12px/1 inherit;color:var(--accent);background:#eef2ff;border-radius:99px;padding:7px 12px;margin-bottom:8px}
+.card{border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 14px;background:var(--soft)}
+.card h3{margin-top:0}
+.card p:last-child{margin-bottom:0}
+.tag{display:inline-block;font:600 11px/1 inherit;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);background:#fff;border-radius:4px;padding:5px 7px;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;margin:0 0 20px;font-size:15px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600}
 a{color:var(--accent)}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;border-radius:8px;margin:6px 8px 6px 0}
+.cta.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
 footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;color:var(--muted);font-size:14px}
 footer a{margin-right:18px}
-.lang-ru [lang=en],.lang-en [lang=ru]{display:none}
-@media(max-width:520px){h1{font-size:27px;margin-top:40px}}
+.lang-en [lang=ru],.lang-ru [lang=en]{display:none}
+@media(max-width:520px){h1{font-size:27px;margin-top:36px}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap bar">
-    <div class="logo">AdMan</div>
-    <div class="langs">
-      <button onclick="setLang('ru')" id="b-ru" class="on">RU</button>
-      <button onclick="setLang('en')" id="b-en">EN</button>
+    <a class="logo" href="index.html">AdMan</a>
+    <div class="navright">
+      <nav>
+        <a href="product.html" lang="en">Product tour</a>
+        <a href="product.html" lang="ru">Экраны продукта</a>
+        <a href="google-ads-api.html" lang="en">Google Ads API</a>
+        <a href="google-ads-api.html" lang="ru">Google Ads API</a>
+      </nav>
+      <div class="langs">
+        <button onclick="setLang('en')" id="b-en" class="on">EN</button>
+        <button onclick="setLang('ru')" id="b-ru">RU</button>
+      </div>
     </div>
   </div>
 </header>
 
 <main class="wrap">
 
-<div lang="ru">
-  <span class="status">В разработке · ранний доступ</span>
-  <h1>Реклама для малого бизнеса, объяснённая нормальным языком</h1>
-  <p class="lead">AdMan помогает владельцу небольшого бизнеса понять, стоит ли вообще начинать рекламу, подготовить кампанию в Google Ads или Instagram и увидеть, что из этого вышло — без агентства и без рекламного жаргона.</p>
-
-  <h2>Что он делает</h2>
-  <ul>
-    <li><strong>Считает спрос до того, как потрачен первый тенге.</strong> Сколько людей ищут то, что вы продаёте, сколько примерно стоит клик, есть ли смысл начинать.</li>
-    <li><strong>Готовит кампанию и объясняет каждое решение.</strong> Почему выбрана эта площадка, эти ключевые слова, этот бюджет — понятным текстом, а не набором настроек.</li>
-    <li><strong>Показывает результат.</strong> Что происходит с рекламой и что с этим делать дальше.</li>
-  </ul>
-
-  <h2>Как это работает</h2>
-  <ol>
-    <li>Вы заходите в AdMan под своей почтой и паролем.</li>
-    <li>Подключаете свой рекламный кабинет Google Ads или Meta — через официальную авторизацию площадки. Кабинет остаётся вашим.</li>
-    <li>Разбираете предложение AdMan, правите что нужно и подтверждаете. Только после вашего подтверждения кампания создаётся.</li>
-  </ol>
-
-  <div class="note">
-    <p><strong>Деньги за рекламу вы платите площадке напрямую</strong>, со своего кабинета и своей картой. AdMan не принимает и не распоряжается вашим рекламным бюджетом.</p>
-    <p><strong>Ничего не публикуется без вашего подтверждения.</strong> AdMan предлагает и обосновывает, решение принимает человек.</p>
-  </div>
-
-  <h2>Кто за этим стоит</h2>
-  <p>AdMan — продукт независимого разработчика из Казахстана. Сейчас он в разработке: идёт закрытая проверка на первых пользователях. Если хотите попробовать раньше остальных или у вас есть вопрос — напишите на <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>.</p>
-</div>
-
+<!-- ================= ENGLISH ================= -->
 <div lang="en">
   <span class="status">In development · early access</span>
   <h1>Advertising for small businesses, explained in plain language</h1>
-  <p class="lead">AdMan helps a small business owner find out whether advertising is worth starting at all, prepare a campaign on Google Ads or Instagram, and see what came of it — without an agency and without the jargon.</p>
+  <p class="lead">AdMan helps the owner of a small business in Kazakhstan find out whether advertising is worth starting at all, build and run a Google Ads Search campaign in their own account, and understand what came of it — without an agency and without the jargon.</p>
 
-  <h2>What it does</h2>
-  <ul>
-    <li><strong>Measures demand before a single tenge is spent.</strong> How many people search for what you sell, roughly what a click costs, whether it makes sense to start.</li>
-    <li><strong>Prepares a campaign and explains every decision.</strong> Why this platform, these keywords, this budget — in words, not in a wall of settings.</li>
-    <li><strong>Shows the outcome.</strong> What is happening with the ads and what to do next.</li>
-  </ul>
+  <p><a class="cta" href="product.html">See the product screen by screen</a><a class="cta ghost" href="google-ads-api.html">How we use the Google Ads API</a></p>
+
+  <h2>What AdMan does</h2>
+
+  <div class="card">
+    <span class="tag">Demand research</span>
+    <h3>It measures demand before a single tenge is spent</h3>
+    <p>You describe what you sell. AdMan finds the words people actually search for — which is rarely the wording the owner uses — and returns monthly search volume, an estimated cost per click and a competition level for each of them. Then it says plainly whether starting makes sense, and on which channel.</p>
+    <p>This is the step nobody else performs for this customer: an agency will not do it for a 100,000 ₸ budget, and an ad platform has no reason to talk anyone out of an expensive keyword.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Campaign creation</span>
+    <h3>It builds the campaign and explains every decision</h3>
+    <p>Search campaign with geographic and language targeting, ad groups, keywords with match types, negative keywords, responsive search ads, callout extensions, a daily budget, a bidding strategy and a conversion action. Every one of those choices comes with a sentence in ordinary words explaining why it was made and what it costs you.</p>
+    <p>Nothing is created in your account until you have read the proposal and pressed confirm.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Day-to-day management</span>
+    <h3>It runs the campaign, and tells you what it changed</h3>
+    <p>Pause, resume or remove campaigns, ad groups, ads and keywords. Change budgets, bidding strategies and targeting. Add negative keywords from the search terms that wasted money. Every change AdMan proposes is logged with its reason, and the ones that cost money wait for your confirmation.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Reporting</span>
+    <h3>It reports in numbers you already understand</h3>
+    <p>Clicks, cost, impressions and conversions at account, campaign, ad group, ad, keyword and search term level. Three depths: three numbers in a message, a screen with the breakdown, an export. A report ends with a recommendation rather than a number, because a table is something any ad account can already show you.</p>
+  </div>
+
+  <h2>Where it advertises</h2>
+  <p><strong>Google Ads is the primary channel</strong> and the one described in detail on this site. AdMan creates and manages Search campaigns in the customer's own Google Ads account.</p>
+  <p>AdMan is also being built to work with <strong>Meta (Facebook and Instagram)</strong> as a separate channel, for businesses whose customers are not searching for them yet. The choice between channels is part of what AdMan explains rather than something the owner is expected to know.</p>
+  <div class="note">
+    <p><strong>Google Ads data is always reported separately</strong> from data of any other advertising platform. The two are never merged into a single blended number.</p>
+  </div>
 
   <h2>How it works</h2>
   <ol>
     <li>You sign in to AdMan with your own email and password.</li>
-    <li>You connect your own Google Ads or Meta advertising account through the platform's official authorization. The account stays yours.</li>
-    <li>You review what AdMan proposes, change what you want, and confirm. The campaign is created only after your confirmation.</li>
+    <li>You connect your own Google Ads account through Google's official OAuth authorization. The account stays yours; you can revoke access at any time from your Google Account.</li>
+    <li>AdMan researches your business and your demand, and shows what it would advertise and what it expects that to cost.</li>
+    <li>You review the proposed campaign, change what you want, and confirm. Only then is anything created in your account.</li>
+    <li>AdMan runs the campaign, reports results, and proposes changes — each of them explained.</li>
   </ol>
 
   <div class="note">
-    <p><strong>You pay the advertising platform directly</strong>, from your own account and your own card. AdMan never receives or controls your advertising budget.</p>
+    <p><strong>You pay Google directly</strong>, from your own account with your own payment method. AdMan never receives, holds or spends your advertising budget, and takes no percentage of your ad spend.</p>
     <p><strong>Nothing is published without your confirmation.</strong> AdMan proposes and justifies; a human decides.</p>
   </div>
 
+  <h2>What it costs</h2>
+  <p>AdMan is paid for by the business owner, as a subscription for the software. The unit of pricing is a <strong>connected advertising channel</strong> — one platform in one ad account — and the second channel costs noticeably less than the first. You pay only for months in which you actually advertise.</p>
+  <p>There is a free tier that covers everything the software does without AI reasoning, plus one complete campaign, once. There is also a one-off purchase — a single campaign with a month of management, no subscription — for seasonal businesses that will never subscribe.</p>
+  <p>AdMan does not earn a percentage of advertising spend. That model rewards spending more, which is the opposite of what this customer needs. Final prices will be published before launch.</p>
+
+  <h2>Where the product stands today</h2>
+  <p>AdMan is in development, built by an independent developer in Kazakhstan. The product design is complete and documented; the accounts, the Google Cloud project and the OAuth consent flow are configured; the interface shown on the <a href="product.html">product tour</a> is presented as design mock-ups, not as screenshots of shipped software.</p>
+  <p>The first release covers Google Ads Search campaigns for a small group of pilot businesses in Kazakhstan, in Russian and English.</p>
+
   <h2>Who is behind it</h2>
-  <p>AdMan is built by an independent developer based in Kazakhstan. It is currently in development and being tested with a small group of first users. To try it early or to ask a question, write to <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>.</p>
+  <p>AdMan is built by Sergey Plotnikov, an independent software developer based in Almaty, Kazakhstan. To try it early, to ask a question, or for anything related to the Google Ads API, write to <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>. Mail to this address is read every day.</p>
+</div>
+
+<!-- ================= РУССКИЙ ================= -->
+<div lang="ru">
+  <span class="status">В разработке · ранний доступ</span>
+  <h1>Реклама для малого бизнеса, объяснённая нормальным языком</h1>
+  <p class="lead">AdMan помогает владельцу небольшого бизнеса в Казахстане понять, стоит ли вообще начинать рекламу, собрать и вести поисковую кампанию в его собственном кабинете Google Ads и увидеть, что из этого вышло — без агентства и без рекламного жаргона.</p>
+
+  <p><a class="cta" href="product.html">Посмотреть продукт по экранам</a><a class="cta ghost" href="google-ads-api.html">Как мы используем Google Ads API</a></p>
+
+  <h2>Что делает AdMan</h2>
+
+  <div class="card">
+    <span class="tag">Оценка спроса</span>
+    <h3>Считает спрос до того, как потрачен первый тенге</h3>
+    <p>Вы рассказываете, что продаёте. AdMan подбирает слова, которыми это на самом деле ищут — обычно это не те слова, которыми называет услугу сам владелец, — и по каждому показывает частоту за месяц, примерную цену клика и уровень конкуренции. После чего прямо говорит, есть ли смысл начинать и на какой площадке.</p>
+    <p>Этот шаг за такого клиента не делает никто: агентство не возьмётся ради бюджета в 100 000 ₸, а у площадки нет причин отговаривать от дорогого запроса.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Создание кампании</span>
+    <h3>Собирает кампанию и объясняет каждое решение</h3>
+    <p>Поисковая кампания с географией и языком показа, группы объявлений, ключевые слова с типами соответствия, минус-слова, адаптивные поисковые объявления, уточнения, дневной бюджет, стратегия назначения ставок и конверсионное действие. У каждого из этих решений — фраза обычными словами: почему так и чем вы за это платите.</p>
+    <p>Пока вы не прочитали предложение и не нажали «подтвердить», в вашем кабинете не создаётся ничего.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Ведение</span>
+    <h3>Ведёт кампанию и говорит, что именно изменил</h3>
+    <p>Останавливает, возобновляет и удаляет кампании, группы, объявления и ключевые слова. Меняет бюджеты, стратегии ставок и таргетинг. Добавляет минус-слова по поисковым запросам, которые потратили деньги впустую. Каждое изменение записывается с причиной, а те, что стоят денег, ждут вашего подтверждения.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Отчётность</span>
+    <h3>Отчитывается числами, которые вы и так понимаете</h3>
+    <p>Клики, расход, показы и конверсии на уровне аккаунта, кампании, группы, объявления, ключевого слова и поискового запроса. Три глубины: три числа в сообщении, экран с разбивкой, выгрузка. Отчёт заканчивается рекомендацией, а не цифрой, — иначе это таблица, которую покажет любой рекламный кабинет.</p>
+  </div>
+
+  <h2>Где размещает рекламу</h2>
+  <p><strong>Google Ads — основной канал</strong>, и именно он подробно описан на этом сайте. AdMan создаёт и ведёт поисковые кампании в собственном кабинете Google Ads клиента.</p>
+  <p>Отдельным каналом строится работа с <strong>Meta (Facebook и Instagram)</strong> — для бизнесов, которых пока никто не ищет. Выбор между каналами AdMan объясняет сам; предполагать, что владелец это знает, неправильно.</p>
+  <div class="note">
+    <p><strong>Данные Google Ads всегда показываются отдельно</strong> от данных любой другой рекламной площадки и никогда не смешиваются в одно общее число.</p>
+  </div>
+
+  <h2>Как это работает</h2>
+  <ol>
+    <li>Вы заходите в AdMan под своей почтой и паролем.</li>
+    <li>Подключаете свой кабинет Google Ads через официальную авторизацию Google (OAuth). Кабинет остаётся вашим, доступ отзывается в любой момент из вашего аккаунта Google.</li>
+    <li>AdMan разбирается в вашем бизнесе и вашем спросе и показывает, что он стал бы рекламировать и во что это обойдётся.</li>
+    <li>Вы разбираете предложенную кампанию, правите что нужно и подтверждаете. Только после этого в кабинете что-то создаётся.</li>
+    <li>AdMan ведёт кампанию, показывает результат и предлагает изменения — каждое с объяснением.</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>Деньги за рекламу вы платите Google напрямую</strong>, со своего кабинета и своей картой. AdMan не принимает, не хранит и не тратит ваш рекламный бюджет и не берёт процент от расхода.</p>
+    <p><strong>Ничего не публикуется без вашего подтверждения.</strong> AdMan предлагает и обосновывает, решение принимает человек.</p>
+  </div>
+
+  <h2>Сколько это стоит</h2>
+  <p>За AdMan платит владелец бизнеса — как за программу. Единица тарификации — <strong>подключённый рекламный канал</strong>, то есть площадка в конкретном кабинете, и второй канал стоит заметно дешевле первого. Платите только за те месяцы, в которые реально рекламируетесь.</p>
+  <p>Есть бесплатный уровень: всё, что программа делает без рассуждений модели, плюс одна полная кампания единожды. Есть разовая покупка — одна кампания с месяцем ведения, без подписки, — для сезонного бизнеса, который не подпишется никогда.</p>
+  <p>Процент от рекламного расхода AdMan не берёт: такая модель вознаграждает за то, что клиент тратит больше, а этому клиенту нужно ровно обратное. Окончательные цены будут опубликованы до запуска.</p>
+
+  <h2>В каком состоянии продукт сейчас</h2>
+  <p>AdMan в разработке, его делает независимый разработчик из Казахстана. Устройство продукта продумано и описано, аккаунты, проект в Google Cloud и экран согласия OAuth настроены, а интерфейс на странице <a href="product.html">экранов продукта</a> — это макеты, а не снимки работающей программы.</p>
+  <p>Первая версия — поисковые кампании Google Ads для небольшой группы пилотных бизнесов в Казахстане, на русском и английском.</p>
+
+  <h2>Кто за этим стоит</h2>
+  <p>AdMan делает Сергей Плотников, независимый разработчик из Алматы, Казахстан. Хотите попробовать раньше остальных, есть вопрос или речь про Google Ads API — напишите на <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>. Почта читается каждый день.</p>
 </div>
 
 </main>
 
 <footer class="wrap">
-  <div lang="ru">
-    <a href="privacy.html">Политика конфиденциальности</a>
-    <a href="terms.html">Условия использования</a>
-    <a href="mailto:softispower@gmail.com">Написать нам</a>
-    <p>© 2026 AdMan · Казахстан</p>
-  </div>
   <div lang="en">
+    <a href="product.html">Product tour</a>
+    <a href="google-ads-api.html">Google Ads API</a>
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Service</a>
     <a href="mailto:softispower@gmail.com">Contact</a>
-    <p>© 2026 AdMan · Kazakhstan</p>
+    <p>© 2026 AdMan · Almaty, Kazakhstan · softispower@gmail.com</p>
+  </div>
+  <div lang="ru">
+    <a href="product.html">Экраны продукта</a>
+    <a href="google-ads-api.html">Google Ads API</a>
+    <a href="privacy.html">Политика конфиденциальности</a>
+    <a href="terms.html">Условия использования</a>
+    <a href="mailto:softispower@gmail.com">Написать нам</a>
+    <p>© 2026 AdMan · Алматы, Казахстан · softispower@gmail.com</p>
   </div>
 </footer>
 
@@ -126,7 +235,6 @@ function setLang(l){
   document.getElementById('b-ru').className=l==='ru'?'on':'';
   document.getElementById('b-en').className=l==='en'?'on':'';
 }
-if((navigator.language||'').slice(0,2)!=='ru')setLang('en');
 </script>
 </body>
 </html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product tour — AdMan</title>
+<meta name="description" content="AdMan screen by screen: demand research, campaign proposal, confirmation, day-to-day management and reporting — with the Google Ads API operations behind each screen.">
+<style>
+:root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff;--soft:#f8f9fb;--ok:#0f7b3f;--warn:#b45309}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+.logo{font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;margin-left:18px}
+nav a:hover{color:var(--accent)}
+h1{font-size:32px;line-height:1.2;letter-spacing:-.03em;margin:48px 0 16px}
+h2{font-size:22px;letter-spacing:-.02em;margin:56px 0 10px}
+p{margin:0 0 16px}
+.lead{font-size:19px;color:var(--muted)}
+.step{font:600 12px/1 inherit;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.note{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0;background:var(--soft)}
+.note p:last-child{margin-bottom:0}
+a{color:var(--accent)}
+ul{margin:0 0 16px;padding-left:22px}li{margin-bottom:8px}
+
+/* mock-up chrome */
+.mock{border:1px solid #d6dae1;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(20,22,26,.05),0 8px 24px rgba(20,22,26,.06);margin:22px 0 10px;background:#fff}
+.mock .chrome{display:flex;align-items:center;gap:10px;background:#f2f4f7;border-bottom:1px solid #e0e4ea;padding:10px 14px}
+.dots{display:flex;gap:6px}
+.dots i{width:10px;height:10px;border-radius:50%;background:#d3d8e0;display:block}
+.url{flex:1;background:#fff;border:1px solid #e2e6ec;border-radius:6px;font:12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#7b838f;padding:7px 10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.screen{padding:22px 24px;font-size:14.5px;line-height:1.55}
+.screen h4{margin:0 0 4px;font-size:17px;letter-spacing:-.01em}
+.screen .sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.sect{margin:0 0 18px}
+.sect:last-child{margin-bottom:0}
+.sect .h{font:600 11px/1 inherit;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:0 0 6px}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;border-bottom:1px solid #d6dae1}
+td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kw{font-weight:500}
+.kw span{display:block;color:var(--muted);font-size:12px;font-weight:400}
+.pill{display:inline-block;font:600 11px/1 inherit;border-radius:4px;padding:4px 7px;border:1px solid var(--line);background:var(--soft);color:var(--muted);white-space:nowrap}
+.pill.g{color:var(--ok);background:#eefaf2;border-color:#c9ecd8}
+.pill.b{color:var(--accent);background:#eef2ff;border-color:#d3ddfb}
+.pill.w{color:var(--warn);background:#fff7ed;border-color:#fbe0bd}
+.why{border-left:2px solid #d3ddfb;background:#f7f9ff;color:#33405c;padding:9px 12px;margin:8px 0 0;font-size:13px;border-radius:0 6px 6px 0}
+.why b{color:var(--accent);font-weight:600}
+.kv{display:grid;grid-template-columns:190px 1fr;gap:6px 14px;font-size:13.5px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.btn{font:600 13px/1 inherit;padding:10px 16px;border-radius:7px;background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.btn.sec{background:#fff;color:var(--ink);border-color:#d6dae1}
+.verdict{border:1px solid #c9ecd8;background:#f4fbf7;border-radius:8px;padding:14px 16px;margin:0 0 18px}
+.verdict b{color:var(--ok)}
+.check{list-style:none;padding:0;margin:0;font-size:13.5px}
+.check li{padding-left:24px;position:relative;margin-bottom:7px}
+.check li:before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+.check li.x:before{content:"!";color:var(--warn)}
+.ad{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff;font-size:13.5px}
+.ad .u{color:#1a7f37;font-size:12.5px}
+.ad .t{color:#1a0dab;font-size:16px;line-height:1.3;margin:2px 0 3px}
+.ad .d{color:#4d5156}
+.api{border:1px solid var(--line);border-radius:0 0 10px 10px;border-top:none;background:var(--soft);padding:14px 18px;margin:-10px 0 0;font-size:13px;color:var(--muted)}
+.api b{color:var(--ink);font-weight:600;display:block;margin-bottom:6px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.api code{font:12.5px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#33405c;background:#fff;border:1px solid var(--line);border-radius:4px;padding:2px 5px;display:inline-block;margin:2px 4px 2px 0}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;color:var(--muted);font-size:14px}
+footer a{margin-right:18px}
+@media(max-width:640px){.kv{grid-template-columns:1fr}.screen{padding:16px}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html">AdMan</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="google-ads-api.html">Google Ads API</a>
+      <a href="mailto:softispower@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<h1>AdMan, screen by screen</h1>
+<p class="lead">What a small business owner sees, in the order they see it — and which Google Ads API operations sit behind each screen.</p>
+
+<div class="note">
+  <p><strong>These are design mock-ups, not screenshots of shipped software.</strong> AdMan is in development; the screens below show the interface as designed and are published so that the product can be evaluated before it is generally available. Interface language is English or Russian; the example throughout is a real category of Kazakhstani small business — a window repair company in Almaty. Keywords appear in Russian because that is what its customers type, with an English gloss underneath.</p>
+</div>
+
+<!-- =================== 1 =================== -->
+<h2>1. Is advertising worth starting at all?</h2>
+<p class="step">Demand research · before any money is committed</p>
+<p>The owner describes the business in their own words. AdMan finds the words customers actually search for, retrieves volume and cost estimates for each, and gives a straight answer — including “no” when the answer is no.</p>
+
+<div class="mock">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.adman.kz/business/okna-plus/demand</div></div>
+  <div class="screen">
+    <h4>What people search for, and what it costs</h4>
+    <p class="sub">Window repair and installation · Almaty · Russian</p>
+
+    <div class="verdict">
+      <b>Worth starting — but not with what you asked for.</b><br>
+      You wanted to advertise window <em>installation</em>. People search for <em>repair</em> five times more often, and a click costs a third as much. We recommend starting with repair and adding installation once the campaign has data.
+    </div>
+
+    <div class="sect">
+      <div class="h">Keyword ideas · monthly averages, Almaty</div>
+      <table>
+        <tr><th>Search term</th><th class="num">Searches / mo</th><th class="num">Top-of-page bid</th><th>Competition</th><th>Verdict</th></tr>
+        <tr><td class="kw">ремонт пластиковых окон<span>plastic window repair</span></td><td class="num">2 400</td><td class="num">180–320 ₸</td><td><span class="pill">Medium</span></td><td><span class="pill g">Start here</span></td></tr>
+        <tr><td class="kw">регулировка окон<span>window adjustment</span></td><td class="num">880</td><td class="num">140–260 ₸</td><td><span class="pill">Low</span></td><td><span class="pill g">Start here</span></td></tr>
+        <tr><td class="kw">замена стеклопакета<span>glass unit replacement</span></td><td class="num">720</td><td class="num">210–390 ₸</td><td><span class="pill">Medium</span></td><td><span class="pill g">Start here</span></td></tr>
+        <tr><td class="kw">установка пластиковых окон<span>plastic window installation</span></td><td class="num">480</td><td class="num">520–910 ₸</td><td><span class="pill">High</span></td><td><span class="pill w">Later</span></td></tr>
+        <tr><td class="kw">окна алматы недорого<span>cheap windows almaty</span></td><td class="num">1 100</td><td class="num">160–300 ₸</td><td><span class="pill">High</span></td><td><span class="pill w">Excluded</span></td></tr>
+      </table>
+      <div class="why"><b>Why “cheap windows” is excluded:</b> the people searching it are comparing prices, not booking a measurement. It brings clicks that do not become jobs. It goes into your negative keyword list instead.</div>
+    </div>
+
+    <div class="sect">
+      <div class="h">What a month would look like</div>
+      <dl class="kv">
+        <dt>Budget you named</dt><dd>120 000 ₸ per month</dd>
+        <dt>Expected clicks</dt><dd>430 – 610</dd>
+        <dt>Expected enquiries</dt><dd>18 – 34 <span class="pill">estimate, low confidence until we have your own data</span></dd>
+        <dt>Cost per enquiry</dt><dd>3 500 – 6 600 ₸</dd>
+      </dl>
+    </div>
+
+    <div class="btns"><span class="btn">Build this campaign</span><span class="btn sec">Change what we advertise</span><span class="btn sec">Not now</span></div>
+  </div>
+</div>
+<div class="api"><b>Google Ads API behind this screen</b>
+  <code>KeywordPlanIdeaService.GenerateKeywordIdeas</code>
+  <code>KeywordPlanIdeaService.GenerateKeywordHistoricalMetrics</code>
+  <code>KeywordPlanService.GenerateForecastMetrics</code>
+  <code>GeoTargetConstantService.SuggestGeoTargetConstants</code>
+  <br>Read-only. Nothing is created in the customer's account at this stage.
+</div>
+
+<!-- =================== 2 =================== -->
+<h2>2. The campaign, with the reasoning attached</h2>
+<p class="step">Creation · proposal, not yet created</p>
+<p>Every setting is shown with a sentence explaining why it was chosen and what it costs the owner. Advertising tools normally show settings; AdMan's whole point is that it shows the reasoning, because its user does not know what the settings mean.</p>
+
+<div class="mock">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.adman.kz/business/okna-plus/campaign/draft</div></div>
+  <div class="screen">
+    <h4>Proposed campaign: Window repair · Almaty</h4>
+    <p class="sub">Draft — nothing has been created in your Google Ads account yet</p>
+
+    <div class="sect">
+      <div class="h">Campaign settings</div>
+      <dl class="kv">
+        <dt>Type</dt><dd>Search</dd>
+        <dt>Locations</dt><dd>Almaty city + 25 km · people regularly in this location</dd>
+        <dt>Languages</dt><dd>Russian, Kazakh</dd>
+        <dt>Daily budget</dt><dd>4 000 ₸ <span class="pill">≈ 120 000 ₸ / month</span></dd>
+        <dt>Bidding strategy</dt><dd>Maximize Conversions, no target CPA for the first 14 days</dd>
+        <dt>Conversion action</dt><dd>Phone call from ad · Website form submission</dd>
+        <dt>Ad schedule</dt><dd>08:00 – 20:00, Mon–Sat</dd>
+        <dt>Networks</dt><dd>Google Search only · Search partners off · Display off</dd>
+      </dl>
+      <div class="why"><b>Why no target CPA yet:</b> a target given before the account has conversion history makes Google throttle your ads to almost nothing. We set the target on day 15, from your own numbers rather than a guess.</div>
+      <div class="why"><b>Why the Display Network is off:</b> your customer has a broken window right now. Showing them a banner while they read the news does not sell a repair, but it does spend the budget.</div>
+      <div class="why"><b>Why 08:00–20:00:</b> a call at 23:00 that nobody answers is a paid click you have lost. Your team answers between 08:00 and 20:00, so that is when we advertise.</div>
+    </div>
+
+    <div class="sect">
+      <div class="h">Ad group 1 · Window repair</div>
+      <table>
+        <tr><th>Keyword</th><th>Match type</th><th class="num">Est. CPC</th></tr>
+        <tr><td class="kw">ремонт пластиковых окон<span>plastic window repair</span></td><td><span class="pill b">Phrase</span></td><td class="num">180–320 ₸</td></tr>
+        <tr><td class="kw">ремонт окон алматы<span>window repair almaty</span></td><td><span class="pill b">Phrase</span></td><td class="num">190–330 ₸</td></tr>
+        <tr><td class="kw">[ремонт окон]<span>window repair — exact</span></td><td><span class="pill b">Exact</span></td><td class="num">210–350 ₸</td></tr>
+      </table>
+      <div class="why"><b>Why phrase and exact, not broad:</b> broad match on a 4 000 ₸ daily budget spends the whole day on one loosely related search. Broad match is a tool for accounts with data. Yours has none yet.</div>
+    </div>
+
+    <div class="sect">
+      <div class="h">Ad group 2 · Window adjustment</div>
+      <table>
+        <tr><th>Keyword</th><th>Match type</th><th class="num">Est. CPC</th></tr>
+        <tr><td class="kw">регулировка окон<span>window adjustment</span></td><td><span class="pill b">Phrase</span></td><td class="num">140–260 ₸</td></tr>
+        <tr><td class="kw">окно не закрывается<span>window will not close</span></td><td><span class="pill b">Phrase</span></td><td class="num">120–240 ₸</td></tr>
+      </table>
+    </div>
+
+    <div class="sect">
+      <div class="h">Campaign negative keywords</div>
+      <p style="margin:0 0 6px"><span class="pill">недорого / cheap</span> <span class="pill">своими руками / DIY</span> <span class="pill">бесплатно / free</span> <span class="pill">вакансия / job</span> <span class="pill">б/у / second-hand</span> <span class="pill">купить окно / buy a window</span></p>
+      <div class="why"><b>Why these:</b> each is a search where the person is not going to hire anyone. They cost the same per click as a customer and never become one.</div>
+    </div>
+
+    <div class="sect">
+      <div class="h">Responsive search ad · preview</div>
+      <div class="ad">
+        <div class="u">Ad · okna-plus.kz/remont</div>
+        <div class="t">Window Repair in Almaty — Same-Day Visit</div>
+        <div class="d">Adjustment, glass unit and seal replacement. A technician comes today, quote before work starts, 1-year guarantee.</div>
+      </div>
+      <p style="margin:10px 0 0;font-size:13px;color:var(--muted)">12 headlines and 4 descriptions are generated; Google assembles the combinations. Callout extensions: <span class="pill">Same-day visit</span> <span class="pill">1-year guarantee</span> <span class="pill">Free quote</span></p>
+    </div>
+
+    <div class="btns"><span class="btn">Review and create</span><span class="btn sec">Edit anything above</span><span class="btn sec">Ask why again</span></div>
+  </div>
+</div>
+<div class="api"><b>Google Ads API behind this screen</b>
+  <code>CampaignBudgetService.MutateCampaignBudgets</code>
+  <code>CampaignService.MutateCampaigns</code>
+  <code>CampaignCriterionService.MutateCampaignCriteria</code>
+  <code>AdGroupService.MutateAdGroups</code>
+  <code>AdGroupCriterionService.MutateAdGroupCriteria</code>
+  <code>AdGroupAdService.MutateAdGroupAds</code>
+  <code>AssetService.MutateAssets</code>
+  <code>CampaignAssetService.MutateCampaignAssets</code>
+  <code>ConversionActionService.MutateConversionActions</code>
+  <br>All of these run with <code>validate_only</code> first, and for real only after the owner confirms on screen 3.
+</div>
+
+<!-- =================== 3 =================== -->
+<h2>3. Confirmation — the last screen before money moves</h2>
+<p class="step">Creation · human decision</p>
+<p>AdMan proposes; a person decides. This screen lists exactly what will be created, what it will cost per day, and the checks that were run before asking.</p>
+
+<div class="mock">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.adman.kz/business/okna-plus/campaign/confirm</div></div>
+  <div class="screen">
+    <h4>Create this campaign in your Google Ads account?</h4>
+    <p class="sub">Account 123-456-7890 · Okna Plus LLP · connected by you on 14 August 2026</p>
+
+    <div class="sect">
+      <div class="h">What will be created</div>
+      <ul class="check">
+        <li>1 Search campaign, paused until you press Start</li>
+        <li>2 ad groups, 5 keywords, 6 campaign negative keywords</li>
+        <li>2 responsive search ads, 3 callout extensions</li>
+        <li>1 conversion action for calls from ads</li>
+      </ul>
+    </div>
+
+    <div class="sect">
+      <div class="h">Checks run before asking you</div>
+      <ul class="check">
+        <li>Landing page opens, loads in 1.9 s and works on a phone</li>
+        <li>Privacy policy present at the address Google requires</li>
+        <li>Phone number in the ad matches the one on the site</li>
+        <li>No claims in the ad text that Google's policies prohibit</li>
+        <li class="x">Conversion tracking tag is not on your site yet — we will send you a two-line instruction, and until it is installed we count calls only</li>
+      </ul>
+    </div>
+
+    <div class="sect">
+      <div class="h">What it will cost you</div>
+      <dl class="kv">
+        <dt>Charged by Google</dt><dd>up to 4 000 ₸ per day, billed by Google to your own card</dd>
+        <dt>Charged by AdMan</dt><dd>subscription for the software only — no share of your ad spend</dd>
+        <dt>You can stop it</dt><dd>from this screen, from your Google Ads account, or by revoking AdMan's access in your Google Account</dd>
+      </dl>
+    </div>
+
+    <div class="btns"><span class="btn">Yes, create it</span><span class="btn sec">Not yet</span></div>
+  </div>
+</div>
+<div class="api"><b>Google Ads API behind this screen</b>
+  The same mutate operations as screen 2, executed only after this confirmation, in a single atomic request. Every call is written to an action log with the user who approved it and the reason recorded at the time of proposal.
+</div>
+
+<!-- =================== 4 =================== -->
+<h2>4. Running it, day to day</h2>
+<p class="step">Management</p>
+<p>Pause, resume, remove, re-budget, re-target, exclude what wasted money. Changes AdMan proposes carry their reason; the ones that spend money wait for a person.</p>
+
+<div class="mock">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.adman.kz/business/okna-plus/manage</div></div>
+  <div class="screen">
+    <h4>Window repair · Almaty</h4>
+    <p class="sub">Enabled · day 12 · 46 800 ₸ spent of 120 000 ₸ this month</p>
+
+    <div class="sect">
+      <div class="h">Campaign and ad groups</div>
+      <table>
+        <tr><th>Name</th><th>Status</th><th class="num">Budget / bid</th><th class="num">Cost</th><th class="num">Conv.</th><th>Actions</th></tr>
+        <tr><td><strong>Window repair · Almaty</strong></td><td><span class="pill g">Enabled</span></td><td class="num">4 000 ₸ / day</td><td class="num">46 800 ₸</td><td class="num">14</td><td><span class="pill">Pause</span> <span class="pill">Edit budget</span> <span class="pill">Edit bidding</span></td></tr>
+        <tr><td>— Window repair</td><td><span class="pill g">Enabled</span></td><td class="num">auto</td><td class="num">34 100 ₸</td><td class="num">11</td><td><span class="pill">Pause</span> <span class="pill">Remove</span></td></tr>
+        <tr><td>— Window adjustment</td><td><span class="pill">Paused</span></td><td class="num">auto</td><td class="num">12 700 ₸</td><td class="num">3</td><td><span class="pill">Enable</span> <span class="pill">Remove</span></td></tr>
+      </table>
+    </div>
+
+    <div class="sect">
+      <div class="h">Search terms that spent money this week</div>
+      <table>
+        <tr><th>Search term</th><th>Matched keyword</th><th class="num">Cost</th><th class="num">Conv.</th><th>Suggestion</th></tr>
+        <tr><td class="kw">ремонт окон цена<span>window repair price</span></td><td>ремонт окон</td><td class="num">6 200 ₸</td><td class="num">4</td><td><span class="pill g">Keep</span></td></tr>
+        <tr><td class="kw">ремонт окон своими руками<span>window repair DIY</span></td><td>ремонт окон</td><td class="num">3 900 ₸</td><td class="num">0</td><td><span class="pill w">Add as negative</span></td></tr>
+        <tr><td class="kw">ремонт деревянных окон<span>wooden window repair</span></td><td>ремонт окон</td><td class="num">2 400 ₸</td><td class="num">0</td><td><span class="pill w">Add as negative</span></td></tr>
+      </table>
+      <div class="why"><b>Why:</b> you do not repair wooden frames, and nobody doing it themselves is going to call you. Excluding these two returns about 6 300 ₸ a week to the keywords that are producing enquiries. <b>Approve?</b></div>
+    </div>
+
+    <div class="sect">
+      <div class="h">What AdMan did this week, without asking</div>
+      <ul class="check">
+        <li>Rewrote two headlines that Google rated “low” — no cost impact, reversible</li>
+        <li>Shifted the ad schedule to end at 19:00 on Saturdays, where no call was ever answered</li>
+        <li>Flagged that a competitor started bidding on your brand name — no action taken, your decision</li>
+      </ul>
+    </div>
+
+    <div class="btns"><span class="btn">Approve the two exclusions</span><span class="btn sec">Show me everything changed</span><span class="btn sec">Pause the campaign</span></div>
+  </div>
+</div>
+<div class="api"><b>Google Ads API behind this screen</b>
+  <code>CampaignService.MutateCampaigns</code>
+  <code>AdGroupService.MutateAdGroups</code>
+  <code>AdGroupCriterionService.MutateAdGroupCriteria</code>
+  <code>AdGroupAdService.MutateAdGroupAds</code>
+  <code>CampaignBudgetService.MutateCampaignBudgets</code>
+  <code>CampaignCriterionService.MutateCampaignCriteria</code>
+  <code>GoogleAdsService.SearchStream</code> on <code>search_term_view</code>
+  <br>Status changes (enable / pause / remove), budget changes, bidding strategy changes and negative keyword additions are all available to the owner directly in this interface.
+</div>
+
+<!-- =================== 5 =================== -->
+<h2>5. Reporting</h2>
+<p class="step">Reporting</p>
+<p>The numbers Google reports, at every level, plus the one thing an ad account will not give you: what to do about them.</p>
+
+<div class="mock">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.adman.kz/business/okna-plus/report</div></div>
+  <div class="screen">
+    <h4>Last 30 days</h4>
+    <p class="sub">Google Ads · account 123-456-7890 · data retrieved from the Google Ads API 12 minutes ago</p>
+
+    <div class="sect">
+      <div class="h">Account</div>
+      <table>
+        <tr><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">Cost</th><th class="num">Conversions</th><th class="num">Cost / conv.</th></tr>
+        <tr><td class="num">38 420</td><td class="num">1 106</td><td class="num">118 400 ₸</td><td class="num">31</td><td class="num">3 819 ₸</td></tr>
+      </table>
+    </div>
+
+    <div class="sect">
+      <div class="h">By campaign</div>
+      <table>
+        <tr><th>Campaign</th><th>Status</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">Cost</th><th class="num">Conv.</th></tr>
+        <tr><td>Window repair · Almaty</td><td><span class="pill g">Enabled</span></td><td class="num">38 420</td><td class="num">1 106</td><td class="num">118 400 ₸</td><td class="num">31</td></tr>
+      </table>
+    </div>
+
+    <div class="sect">
+      <div class="h">By ad group, ad and keyword</div>
+      <table>
+        <tr><th>Level</th><th>Name</th><th>Status</th><th class="num">Clicks</th><th class="num">Cost</th><th class="num">Conv.</th><th class="num">Avg. CPC</th></tr>
+        <tr><td>Ad group</td><td>Window repair</td><td><span class="pill g">Enabled</span></td><td class="num">812</td><td class="num">86 300 ₸</td><td class="num">24</td><td class="num">106 ₸</td></tr>
+        <tr><td>Ad</td><td>RSA — “Same-Day Visit”</td><td><span class="pill g">Enabled</span></td><td class="num">508</td><td class="num">54 100 ₸</td><td class="num">17</td><td class="num">107 ₸</td></tr>
+        <tr><td>Keyword</td><td>ремонт пластиковых окон</td><td><span class="pill g">Enabled</span></td><td class="num">402</td><td class="num">44 900 ₸</td><td class="num">13</td><td class="num">112 ₸</td></tr>
+        <tr><td>Keyword</td><td>[ремонт окон]</td><td><span class="pill g">Enabled</span></td><td class="num">288</td><td class="num">30 200 ₸</td><td class="num">9</td><td class="num">105 ₸</td></tr>
+        <tr><td>Keyword</td><td>окно не закрывается</td><td><span class="pill">Paused</span></td><td class="num">122</td><td class="num">11 200 ₸</td><td class="num">2</td><td class="num">92 ₸</td></tr>
+      </table>
+    </div>
+
+    <div class="sect">
+      <div class="h">What this means</div>
+      <div class="verdict">
+        <b>Budget, not creative.</b> Your ads convert at 2.8% and your cost per enquiry has been flat for three weeks — the campaign is not broken, it is capped. You ran out of daily budget before 15:00 on 19 of the last 30 days. Raising the daily budget to 5 500 ₸ should produce roughly 9 more enquiries a month at a similar cost each.
+      </div>
+      <p style="margin:0;font-size:13px;color:var(--muted)">Google Ads figures are shown on their own. Data from other advertising platforms, when a business runs more than one channel, is reported separately and never merged into a blended number.</p>
+    </div>
+
+    <div class="btns"><span class="btn">Raise the budget</span><span class="btn sec">Export</span><span class="btn sec">Ask something about this report</span></div>
+  </div>
+</div>
+<div class="api"><b>Google Ads API behind this screen</b>
+  <code>GoogleAdsService.SearchStream</code> on <code>customer</code>, <code>campaign</code>, <code>ad_group</code>, <code>ad_group_ad</code>, <code>keyword_view</code>, <code>search_term_view</code>
+  <br>Reporting data is retrieved on request and is never more than 24 hours old. Where Google itself has not yet finalised a figure, the screen says so rather than showing a number that will change.
+</div>
+
+<h2>What is deliberately not here</h2>
+<ul>
+  <li>AdMan never takes a percentage of advertising spend, and never becomes the payer of a customer's ad account.</li>
+  <li>AdMan does not consolidate customers into a single manager account it controls. Each business connects its own account and keeps it.</li>
+  <li>AdMan does not act on money without a human confirmation, and does not hide what it changed.</li>
+</ul>
+
+<p><a href="google-ads-api.html">How AdMan uses the Google Ads API →</a></p>
+
+</main>
+
+<footer class="wrap">
+  <a href="index.html">Home</a>
+  <a href="google-ads-api.html">Google Ads API</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms of Service</a>
+  <a href="mailto:softispower@gmail.com">Contact</a>
+  <p>© 2026 AdMan · Almaty, Kazakhstan · softispower@gmail.com</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How AdMan uses the Google Ads API — AdMan</title>
+<meta name="description" content="AdMan's use case for the Google Ads API: who our users are, which functionality we build, how we cover Required Minimum Functionality, how accounts and money are separated, and how data is handled.">
+<style>
+:root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff;--soft:#f8f9fb;--ok:#0f7b3f}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+.logo{font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;margin-left:18px}
+nav a:hover{color:var(--accent)}
+h1{font-size:32px;line-height:1.2;letter-spacing:-.03em;margin:48px 0 16px}
+h2{font-size:21px;letter-spacing:-.02em;margin:52px 0 12px}
+h3{font-size:16px;margin:28px 0 6px}
+p{margin:0 0 16px}
+.lead{font-size:19px;color:var(--muted)}
+ol,ul{margin:0 0 16px;padding-left:22px}
+li{margin-bottom:9px}
+.note{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin:24px 0;background:var(--soft)}
+.note p:last-child{margin-bottom:0}
+table{border-collapse:collapse;width:100%;margin:0 0 22px;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600;font-size:13px;letter-spacing:.02em}
+code{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.yes{color:var(--ok);font-weight:600;white-space:nowrap}
+a{color:var(--accent)}
+dl.kv{display:grid;grid-template-columns:230px 1fr;gap:8px 16px;font-size:15px;margin:0 0 20px}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;color:var(--muted);font-size:14px}
+footer a{margin-right:18px}
+.toc{border:1px solid var(--line);border-radius:10px;background:var(--soft);padding:16px 20px;margin:0 0 28px;font-size:14.5px}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin-bottom:5px}
+@media(max-width:640px){dl.kv{grid-template-columns:1fr}h1{font-size:26px}table{font-size:13.5px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html">AdMan</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html">Product tour</a>
+      <a href="mailto:softispower@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<h1>How AdMan uses the Google Ads API</h1>
+<p class="lead">A full description of our business model, our users and our use case for the Google Ads API, including our coverage of Required Minimum Functionality.</p>
+
+<div class="toc">
+  <ol>
+    <li><a href="#what">What AdMan is</a></li>
+    <li><a href="#users">Who uses it</a></li>
+    <li><a href="#type">Tool classification</a></li>
+    <li><a href="#use">What we do with the API</a></li>
+    <li><a href="#rmf">Required Minimum Functionality</a></li>
+    <li><a href="#accounts">Account access and ownership</a></li>
+    <li><a href="#money">Money — who pays whom</a></li>
+    <li><a href="#data">Data handling and disclosures</a></li>
+    <li><a href="#other">Other advertising platforms</a></li>
+    <li><a href="#model">Business model</a></li>
+    <li><a href="#status">Current status</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</div>
+
+<h2 id="what">1. What AdMan is</h2>
+<p>AdMan is a self-service advertising tool for owners of very small businesses in Kazakhstan — a window repair company, a dental clinic, a driving school, a furniture workshop. These businesses have an advertising budget in the range of 50 000 – 300 000 ₸ per month (roughly USD 100 – 600). No agency will take them on at that size, and the Google Ads interface assumes knowledge they do not have and will not acquire.</p>
+<p>AdMan does the work an account manager would do, in the customer's own Google Ads account, and — this is the part that matters for this audience — explains every decision in ordinary language, including what each decision costs them. The customer reviews and confirms; AdMan never acts on money by itself.</p>
+<p>The interface is shown screen by screen on the <a href="product.html">product tour</a>.</p>
+
+<h2 id="users">2. Who uses it</h2>
+<dl class="kv">
+  <dt>Users of the tool</dt><dd><strong>External users</strong> — third-party businesses that are not us and are not related to us. Each is the owner of the Google Ads account it connects.</dd>
+  <dt>Market</dt><dd>Kazakhstan, initially Almaty and Astana. Interface in Russian and English; ads in Russian and Kazakh.</dd>
+  <dt>Typical user</dt><dd>The owner of the business, not a marketing employee. Usually advertising for the first time. In most cases has never opened Google Ads before.</dd>
+  <dt>Number of accounts</dt><dd>One Google Ads account per business. Pilot scale at launch is a small group of businesses; we are not building a bulk-management platform for agencies.</dd>
+</dl>
+
+<h2 id="type">3. Tool classification</h2>
+<dl class="kv">
+  <dt>Tool type</dt><dd>Full-service tool — it creates, manages and reports.</dd>
+  <dt>Users</dt><dd>External users.</dd>
+  <dt>Campaign types</dt><dd>Search. Other campaign types are out of scope for the first release.</dd>
+  <dt>Functionality</dt><dd>Creation · Management · Reporting · Keyword Planning.</dd>
+  <dt>Third-party tool used</dt><dd>None. AdMan is developed by us; we do not resell or rebrand anyone else's tool.</dd>
+  <dt>App conversion tracking</dt><dd>Not used.</dd>
+</dl>
+
+<h2 id="use">4. What we do with the API</h2>
+<p>Every operation below is triggered by an action the business owner took in AdMan's interface. Nothing is done on a schedule that the owner has not agreed to, and nothing that spends money happens without an explicit confirmation.</p>
+
+<table>
+  <tr><th style="width:26%">What the user does</th><th style="width:38%">What AdMan does for them</th><th>Google Ads API services</th></tr>
+  <tr>
+    <td><strong>Asks whether advertising is worth it</strong></td>
+    <td>Finds the terms their customers actually search for, retrieves search volume, competition and top-of-page bid estimates, and forecasts what a given budget would produce. Returns a plain answer, including a recommendation not to advertise where that is the honest one.</td>
+    <td><code>KeywordPlanIdeaService</code>, <code>KeywordPlanService</code>, <code>GeoTargetConstantService</code></td>
+  </tr>
+  <tr>
+    <td><strong>Approves a proposed campaign</strong></td>
+    <td>Creates a Search campaign with geographic and language targeting, a daily budget, a bidding strategy, ad groups, keywords with match types, campaign negative keywords, responsive search ads, callout extensions and a conversion action.</td>
+    <td><code>CampaignBudgetService</code>, <code>CampaignService</code>, <code>CampaignCriterionService</code>, <code>AdGroupService</code>, <code>AdGroupCriterionService</code>, <code>AdGroupAdService</code>, <code>AssetService</code>, <code>CampaignAssetService</code>, <code>ConversionActionService</code></td>
+  </tr>
+  <tr>
+    <td><strong>Runs the campaign</strong></td>
+    <td>Pauses, resumes and removes campaigns, ad groups, ads and keywords; edits budgets, bidding strategies, targeting and schedules; adds negative keywords found in wasteful search terms. Each change is logged with its reason and, where it affects spend, with the person who approved it.</td>
+    <td>The same mutate services as above</td>
+  </tr>
+  <tr>
+    <td><strong>Asks how it is going</strong></td>
+    <td>Reports impressions, clicks, cost and conversions at account, campaign, ad group, ad, keyword and search term level, with status and average CPC, and ends the report with a recommendation.</td>
+    <td><code>GoogleAdsService.SearchStream</code> over <code>customer</code>, <code>campaign</code>, <code>ad_group</code>, <code>ad_group_ad</code>, <code>keyword_view</code>, <code>search_term_view</code></td>
+  </tr>
+  <tr>
+    <td><strong>Connects an account</strong></td>
+    <td>Lists the Google Ads accounts the signed-in user can access, so they can pick the right one.</td>
+    <td><code>CustomerService.ListAccessibleCustomers</code>, <code>GoogleAdsService.SearchStream</code> over <code>customer_client</code></td>
+  </tr>
+</table>
+
+<h2 id="rmf">5. Required Minimum Functionality</h2>
+<p>AdMan is a full-service tool, so Creation, Management and Reporting RMF all apply to it. The table below states where each requirement is met in the interface. Screen numbers refer to the <a href="product.html">product tour</a>.</p>
+
+<h3>Creation</h3>
+<table>
+  <tr><th style="width:42%">Requirement</th><th style="width:10%"></th><th>Where in AdMan</th></tr>
+  <tr><td>Create a Search campaign with geographic and language targeting</td><td class="yes">Yes</td><td>Screen 2 — locations, radius, presence setting and languages are proposed and editable</td></tr>
+  <tr><td>Conversion tracking — website or call</td><td class="yes">Yes</td><td>Screens 2 and 3 — a conversion action is created; calls from ads are tracked by default, website conversions once the tag is installed</td></tr>
+  <tr><td>Ad group and keyword management with match types</td><td class="yes">Yes</td><td>Screens 2 and 4 — ad groups and keywords with exact, phrase and broad match, editable and removable</td></tr>
+  <tr><td>Campaign negative keywords</td><td class="yes">Yes</td><td>Screens 2 and 4 — proposed at creation, and added from wasteful search terms during management</td></tr>
+  <tr><td>Bidding strategies: Maximize Conversions, Target CPA, Target ROAS</td><td class="yes">Yes</td><td>Screen 2 — chosen and explained; the target is set from the account's own data once it exists</td></tr>
+  <tr><td>Budget configuration</td><td class="yes">Yes</td><td>Screens 2 and 4 — daily budget shown in monthly terms, editable at any time</td></tr>
+  <tr><td>Callout extensions</td><td class="yes">Yes</td><td>Screen 2 — callout assets generated and attached to the campaign</td></tr>
+</table>
+
+<h3>Management</h3>
+<table>
+  <tr><th style="width:42%">Requirement</th><th style="width:10%"></th><th>Where in AdMan</th></tr>
+  <tr><td>Edit campaign settings</td><td class="yes">Yes</td><td>Screen 4 — targeting, schedule, networks and name</td></tr>
+  <tr><td>Pause, enable and remove campaigns, ads and keywords</td><td class="yes">Yes</td><td>Screen 4 — status controls at every level</td></tr>
+  <tr><td>Modify bidding options</td><td class="yes">Yes</td><td>Screen 4 — bidding strategy and target</td></tr>
+  <tr><td>Adjust budgets</td><td class="yes">Yes</td><td>Screen 4 — budget editable, with the effect on expected volume stated</td></tr>
+</table>
+
+<h3>Reporting</h3>
+<table>
+  <tr><th style="width:42%">Level</th><th style="width:10%"></th><th>Metrics shown</th></tr>
+  <tr><td>Account</td><td class="yes">Yes</td><td>Impressions, clicks, cost, conversions</td></tr>
+  <tr><td>Campaign</td><td class="yes">Yes</td><td>The same, plus status</td></tr>
+  <tr><td>Ad group and ads</td><td class="yes">Yes</td><td>Impressions, clicks, cost, conversions, status</td></tr>
+  <tr><td>Keywords</td><td class="yes">Yes</td><td>Impressions, clicks, cost, conversions, average CPC, status</td></tr>
+  <tr><td>Search terms</td><td class="yes">Yes</td><td>Search term, matched keyword, match type, cost, conversions</td></tr>
+</table>
+
+<h2 id="accounts">6. Account access and ownership</h2>
+<ul>
+  <li><strong>Each business connects its own Google Ads account</strong> through Google's official OAuth consent flow. We ask for the <code>adwords</code> scope and nothing else.</li>
+  <li><strong>The account stays the customer's.</strong> We do not require businesses to move their account under a manager account we control, and we do not become an administrator of their account.</li>
+  <li><strong>Access is revocable by the customer at any time</strong>, from inside AdMan or from their own Google Account security settings. Revocation stops all AdMan activity in that account immediately.</li>
+  <li><strong>Our manager account exists for API access only.</strong> Customer accounts are not linked beneath it, and no budget flows through it.</li>
+  <li><strong>Refresh tokens are encrypted at rest</strong>, bound to the tenant they belong to, and are never shared between customers or exported.</li>
+  <li><strong>Every API call that changes something is written to an action log</strong> that records what changed, why, and which person approved it. The log is visible to the customer.</li>
+</ul>
+
+<h2 id="money">7. Money — who pays whom</h2>
+<ul>
+  <li><strong>The business pays Google directly</strong>, from its own Google Ads account with its own payment method. AdMan never receives, holds, forwards or spends a customer's advertising budget.</li>
+  <li><strong>AdMan takes no percentage of advertising spend.</strong> We charge a subscription for the software. A model paid as a share of spend rewards a provider for spending more of a customer's money, which is exactly wrong for a business advertising on 100 000 ₸ a month.</li>
+  <li><strong>We do not resell advertising</strong>, do not act as a media buying agency and do not mark up Google's prices.</li>
+</ul>
+
+<h2 id="data">8. Data handling and disclosures</h2>
+<ul>
+  <li><strong>Reporting freshness.</strong> Google Ads performance data is retrieved from the API when the customer opens a report and is never more than 24 hours old. Where Google has not yet finalised a figure, we say so instead of showing a number that will change.</li>
+  <li><strong>Separation from non-Google data.</strong> Google Ads data is always reported separately from data of any other advertising platform. We do not merge them into a single blended metric.</li>
+  <li><strong>Whose data is whose.</strong> A customer sees only the data of the accounts they connected. Data is isolated per tenant at the database level.</li>
+  <li><strong>No resale of data.</strong> We do not sell, license or otherwise pass customer advertising data to third parties, and we do not use one customer's account data to advantage another.</li>
+  <li><strong>Aggregate benchmarks</strong>, when we show how a business compares to similar businesses, are anonymised and only shown above a minimum group size, so that no individual advertiser can be identified.</li>
+  <li><strong>Deletion.</strong> A customer can disconnect an account and request deletion of the data we hold for it. Details are in the <a href="privacy.html">privacy policy</a>.</li>
+</ul>
+
+<h2 id="other">9. Other advertising platforms</h2>
+<p>AdMan is being built to work with Meta (Facebook and Instagram) as a second, separate advertising channel, for businesses whose customers are not searching for what they sell. Choosing between channels — and saying openly when Google Search is the wrong one — is part of the product's value.</p>
+<p>Where a business runs both, Google Ads figures are presented on their own, labelled as Google Ads, and are never combined with figures from another platform into one number. Any comparison between channels is shown as a comparison, with each side's numbers stated separately.</p>
+
+<h2 id="model">10. Business model</h2>
+<p>The business owner pays for AdMan as software. The unit of pricing is a connected advertising channel — one platform in one advertising account — with the second and subsequent channels priced lower than the first, because they cost us less to serve. Customers pay only for the months in which they actually advertise, since much of this audience is seasonal.</p>
+<p>There is a free tier covering everything the software does without AI reasoning, plus one complete campaign, once. There is a one-off purchase — a single campaign plus one month of management, without a subscription — for businesses that advertise twice a year and will never subscribe. Payments are collected in Kazakhstan through local acquiring. Final prices will be published before launch.</p>
+<p>Revenue therefore comes entirely from the businesses using the tool. It does not come from advertising spend, from Google, or from selling data.</p>
+
+<h2 id="status">11. Current status</h2>
+<p>AdMan is in development, built by an independent developer in Kazakhstan.</p>
+<ul>
+  <li>The product design is complete and documented, including the Google Ads campaign structure, the reasoning the tool must present, and its compliance checks.</li>
+  <li>The Google Ads manager account, the Google Cloud project with the Google Ads API enabled, and the OAuth consent screen are configured and published.</li>
+  <li>The interface is at the design stage: the <a href="product.html">product tour</a> shows mock-ups, not screenshots of shipped software.</li>
+  <li>The first release covers Google Ads Search campaigns for a small group of pilot businesses in Kazakhstan.</li>
+</ul>
+<div class="note">
+  <p>We publish this page rather than a marketing claim because a tool that will operate in other people's advertising accounts should be inspectable before it is usable. If anything here is unclear or looks wrong, we would rather be told.</p>
+</div>
+
+<h2 id="contact">12. Contact</h2>
+<dl class="kv">
+  <dt>Developer</dt><dd>Sergey Plotnikov, independent software developer</dd>
+  <dt>Location</dt><dd>Almaty, Kazakhstan</dd>
+  <dt>Email</dt><dd><a href="mailto:softispower@gmail.com">softispower@gmail.com</a> — read every day, including for anything related to the Google Ads API</dd>
+  <dt>Website</dt><dd><a href="https://adman.kz">https://adman.kz</a></dd>
+</dl>
+
+</main>
+
+<footer class="wrap">
+  <a href="index.html">Home</a>
+  <a href="product.html">Product tour</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms of Service</a>
+  <a href="mailto:softispower@gmail.com">Contact</a>
+  <p>© 2026 AdMan · Almaty, Kazakhstan · softispower@gmail.com</p>
+</footer>
+</body>
+</html>

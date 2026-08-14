@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="lang-ru">
+<html lang="en" class="lang-en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,8 +35,8 @@ footer a{margin-right:18px}
   <div class="wrap bar">
     <a class="logo" href="index.html">AdMan</a>
     <div class="langs">
-      <button onclick="setLang('ru')" id="b-ru" class="on">RU</button>
-      <button onclick="setLang('en')" id="b-en">EN</button>
+      <button onclick="setLang('en')" id="b-en" class="on">EN</button>
+      <button onclick="setLang('ru')" id="b-ru">RU</button>
     </div>
   </div>
 </header>
@@ -177,11 +177,11 @@ footer a{margin-right:18px}
 
 <footer class="wrap">
   <div lang="ru">
-    <a href="index.html">Главная</a><a href="privacy.html">Политика конфиденциальности</a>
+    <a href="index.html">Главная</a><a href="product.html">Экраны продукта</a><a href="google-ads-api.html">Google Ads API</a><a href="privacy.html">Политика конфиденциальности</a>
     <p>© 2026 AdMan · Казахстан</p>
   </div>
   <div lang="en">
-    <a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a>
+    <a href="index.html">Home</a><a href="product.html">Product tour</a><a href="google-ads-api.html">Google Ads API</a><a href="privacy.html">Privacy Policy</a>
     <p>© 2026 AdMan · Kazakhstan</p>
   </div>
 </footer>
@@ -193,7 +193,6 @@ function setLang(l){
   document.getElementById('b-ru').className=l==='ru'?'on':'';
   document.getElementById('b-en').className=l==='en'?'on':'';
 }
-if((navigator.language||'').slice(0,2)!=='ru')setLang('en');
 </script>
 </body>
 </html>
