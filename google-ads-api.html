@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How AdMan uses the Google Ads API — AdMan</title>
-<meta name="description" content="AdMan's use case for the Google Ads API: who our users are, which functionality we build, how we cover Required Minimum Functionality, how accounts and money are separated, and how data is handled.">
+<title>How Privlekai uses the Google Ads API — Privlekai</title>
+<meta name="description" content="Privlekai's use case for the Google Ads API: who our users are, which functionality we build, how we cover Required Minimum Functionality, how accounts and money are separated, and how data is handled.">
 <style>
 :root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff;--soft:#f8f9fb;--ok:#0f7b3f}
 *{box-sizing:border-box}
@@ -45,7 +45,7 @@ footer a{margin-right:18px}
 <body>
 <header>
   <div class="wrap bar">
-    <a class="logo" href="index.html">AdMan</a>
+    <a class="logo" href="index.html">Privlekai</a>
     <nav>
       <a href="index.html">Home</a>
       <a href="product.html">Product tour</a>
@@ -56,12 +56,12 @@ footer a{margin-right:18px}
 
 <main class="wrap">
 
-<h1>How AdMan uses the Google Ads API</h1>
+<h1>How Privlekai uses the Google Ads API</h1>
 <p class="lead">A full description of our business model, our users and our use case for the Google Ads API, including our coverage of Required Minimum Functionality.</p>
 
 <div class="toc">
   <ol>
-    <li><a href="#what">What AdMan is</a></li>
+    <li><a href="#what">What Privlekai is</a></li>
     <li><a href="#users">Who uses it</a></li>
     <li><a href="#type">Tool classification</a></li>
     <li><a href="#use">What we do with the API</a></li>
@@ -76,9 +76,9 @@ footer a{margin-right:18px}
   </ol>
 </div>
 
-<h2 id="what">1. What AdMan is</h2>
-<p>AdMan is a self-service advertising tool for owners of very small businesses in Kazakhstan — a window repair company, a dental clinic, a driving school, a furniture workshop. These businesses have an advertising budget in the range of 50 000 – 300 000 ₸ per month (roughly USD 100 – 600). No agency will take them on at that size, and the Google Ads interface assumes knowledge they do not have and will not acquire.</p>
-<p>AdMan does the work an account manager would do, in the customer's own Google Ads account, and — this is the part that matters for this audience — explains every decision in ordinary language, including what each decision costs them. The customer reviews and confirms; AdMan never acts on money by itself.</p>
+<h2 id="what">1. What Privlekai is</h2>
+<p>Privlekai is a self-service advertising tool for owners of very small businesses in Kazakhstan — a window repair company, a dental clinic, a driving school, a furniture workshop. These businesses have an advertising budget in the range of 50 000 – 300 000 ₸ per month (roughly USD 100 – 600). No agency will take them on at that size, and the Google Ads interface assumes knowledge they do not have and will not acquire.</p>
+<p>Privlekai does the work an account manager would do, in the customer's own Google Ads account, and — this is the part that matters for this audience — explains every decision in ordinary language, including what each decision costs them. The customer reviews and confirms; Privlekai never acts on money by itself.</p>
 <p>The interface is shown screen by screen on the <a href="product.html">product tour</a>.</p>
 
 <h2 id="users">2. Who uses it</h2>
@@ -95,15 +95,15 @@ footer a{margin-right:18px}
   <dt>Users</dt><dd>External users.</dd>
   <dt>Campaign types</dt><dd>Search. Other campaign types are out of scope for the first release.</dd>
   <dt>Functionality</dt><dd>Creation · Management · Reporting · Keyword Planning.</dd>
-  <dt>Third-party tool used</dt><dd>None. AdMan is developed by us; we do not resell or rebrand anyone else's tool.</dd>
+  <dt>Third-party tool used</dt><dd>None. Privlekai is developed by us; we do not resell or rebrand anyone else's tool.</dd>
   <dt>App conversion tracking</dt><dd>Not used.</dd>
 </dl>
 
 <h2 id="use">4. What we do with the API</h2>
-<p>Every operation below is triggered by an action the business owner took in AdMan's interface. Nothing is done on a schedule that the owner has not agreed to, and nothing that spends money happens without an explicit confirmation.</p>
+<p>Every operation below is triggered by an action the business owner took in Privlekai's interface. Nothing is done on a schedule that the owner has not agreed to, and nothing that spends money happens without an explicit confirmation.</p>
 
 <table>
-  <tr><th style="width:26%">What the user does</th><th style="width:38%">What AdMan does for them</th><th>Google Ads API services</th></tr>
+  <tr><th style="width:26%">What the user does</th><th style="width:38%">What Privlekai does for them</th><th>Google Ads API services</th></tr>
   <tr>
     <td><strong>Asks whether advertising is worth it</strong></td>
     <td>Finds the terms their customers actually search for, retrieves search volume, competition and top-of-page bid estimates, and forecasts what a given budget would produce. Returns a plain answer, including a recommendation not to advertise where that is the honest one.</td>
@@ -132,11 +132,11 @@ footer a{margin-right:18px}
 </table>
 
 <h2 id="rmf">5. Required Minimum Functionality</h2>
-<p>AdMan is a full-service tool, so Creation, Management and Reporting RMF all apply to it. The table below states where each requirement is met in the interface. Screen numbers refer to the <a href="product.html">product tour</a>.</p>
+<p>Privlekai is a full-service tool, so Creation, Management and Reporting RMF all apply to it. The table below states where each requirement is met in the interface. Screen numbers refer to the <a href="product.html">product tour</a>.</p>
 
 <h3>Creation</h3>
 <table>
-  <tr><th style="width:42%">Requirement</th><th style="width:10%"></th><th>Where in AdMan</th></tr>
+  <tr><th style="width:42%">Requirement</th><th style="width:10%"></th><th>Where in Privlekai</th></tr>
   <tr><td>Create a Search campaign with geographic and language targeting</td><td class="yes">Yes</td><td>Screen 2 — locations, radius, presence setting and languages are proposed and editable</td></tr>
   <tr><td>Conversion tracking — website or call</td><td class="yes">Yes</td><td>Screens 2 and 3 — a conversion action is created; calls from ads are tracked by default, website conversions once the tag is installed</td></tr>
   <tr><td>Ad group and keyword management with match types</td><td class="yes">Yes</td><td>Screens 2 and 4 — ad groups and keywords with exact, phrase and broad match, editable and removable</td></tr>
@@ -148,7 +148,7 @@ footer a{margin-right:18px}
 
 <h3>Management</h3>
 <table>
-  <tr><th style="width:42%">Requirement</th><th style="width:10%"></th><th>Where in AdMan</th></tr>
+  <tr><th style="width:42%">Requirement</th><th style="width:10%"></th><th>Where in Privlekai</th></tr>
   <tr><td>Edit campaign settings</td><td class="yes">Yes</td><td>Screen 4 — targeting, schedule, networks and name</td></tr>
   <tr><td>Pause, enable and remove campaigns, ads and keywords</td><td class="yes">Yes</td><td>Screen 4 — status controls at every level</td></tr>
   <tr><td>Modify bidding options</td><td class="yes">Yes</td><td>Screen 4 — bidding strategy and target</td></tr>
@@ -169,7 +169,7 @@ footer a{margin-right:18px}
 <ul>
   <li><strong>Each business connects its own Google Ads account</strong> through Google's official OAuth consent flow. We ask for the <code>adwords</code> scope and nothing else.</li>
   <li><strong>The account stays the customer's.</strong> We do not require businesses to move their account under a manager account we control, and we do not become an administrator of their account.</li>
-  <li><strong>Access is revocable by the customer at any time</strong>, from inside AdMan or from their own Google Account security settings. Revocation stops all AdMan activity in that account immediately.</li>
+  <li><strong>Access is revocable by the customer at any time</strong>, from inside Privlekai or from their own Google Account security settings. Revocation stops all Privlekai activity in that account immediately.</li>
   <li><strong>Our manager account exists for API access only.</strong> Customer accounts are not linked beneath it, and no budget flows through it.</li>
   <li><strong>Refresh tokens are encrypted at rest</strong>, bound to the tenant they belong to, and are never shared between customers or exported.</li>
   <li><strong>Every API call that changes something is written to an action log</strong> that records what changed, why, and which person approved it. The log is visible to the customer.</li>
@@ -177,8 +177,8 @@ footer a{margin-right:18px}
 
 <h2 id="money">7. Money — who pays whom</h2>
 <ul>
-  <li><strong>The business pays Google directly</strong>, from its own Google Ads account with its own payment method. AdMan never receives, holds, forwards or spends a customer's advertising budget.</li>
-  <li><strong>AdMan takes no percentage of advertising spend.</strong> We charge a subscription for the software. A model paid as a share of spend rewards a provider for spending more of a customer's money, which is exactly wrong for a business advertising on 100 000 ₸ a month.</li>
+  <li><strong>The business pays Google directly</strong>, from its own Google Ads account with its own payment method. Privlekai never receives, holds, forwards or spends a customer's advertising budget.</li>
+  <li><strong>Privlekai takes no percentage of advertising spend.</strong> We charge a subscription for the software. A model paid as a share of spend rewards a provider for spending more of a customer's money, which is exactly wrong for a business advertising on 100 000 ₸ a month.</li>
   <li><strong>We do not resell advertising</strong>, do not act as a media buying agency and do not mark up Google's prices.</li>
 </ul>
 
@@ -193,16 +193,16 @@ footer a{margin-right:18px}
 </ul>
 
 <h2 id="other">9. Other advertising platforms</h2>
-<p>AdMan is being built to work with Meta (Facebook and Instagram) as a second, separate advertising channel, for businesses whose customers are not searching for what they sell. Choosing between channels — and saying openly when Google Search is the wrong one — is part of the product's value.</p>
+<p>Privlekai is being built to work with Meta (Facebook and Instagram) as a second, separate advertising channel, for businesses whose customers are not searching for what they sell. Choosing between channels — and saying openly when Google Search is the wrong one — is part of the product's value.</p>
 <p>Where a business runs both, Google Ads figures are presented on their own, labelled as Google Ads, and are never combined with figures from another platform into one number. Any comparison between channels is shown as a comparison, with each side's numbers stated separately.</p>
 
 <h2 id="model">10. Business model</h2>
-<p>The business owner pays for AdMan as software. The unit of pricing is a connected advertising channel — one platform in one advertising account — with the second and subsequent channels priced lower than the first, because they cost us less to serve. Customers pay only for the months in which they actually advertise, since much of this audience is seasonal.</p>
+<p>The business owner pays for Privlekai as software. The unit of pricing is a connected advertising channel — one platform in one advertising account — with the second and subsequent channels priced lower than the first, because they cost us less to serve. Customers pay only for the months in which they actually advertise, since much of this audience is seasonal.</p>
 <p>There is a free tier covering everything the software does without AI reasoning, plus one complete campaign, once. There is a one-off purchase — a single campaign plus one month of management, without a subscription — for businesses that advertise twice a year and will never subscribe. Payments are collected in Kazakhstan through local acquiring. Final prices will be published before launch.</p>
 <p>Revenue therefore comes entirely from the businesses using the tool. It does not come from advertising spend, from Google, or from selling data.</p>
 
 <h2 id="status">11. Current status</h2>
-<p>AdMan is in development, built by an independent developer in Kazakhstan.</p>
+<p>Privlekai is in development, built by an independent developer in Kazakhstan.</p>
 <ul>
   <li>The product design is complete and documented, including the Google Ads campaign structure, the reasoning the tool must present, and its compliance checks.</li>
   <li>The Google Ads manager account, the Google Cloud project with the Google Ads API enabled, and the OAuth consent screen are configured and published.</li>
@@ -218,7 +218,7 @@ footer a{margin-right:18px}
   <dt>Developer</dt><dd>Sergey Plotnikov, independent software developer</dd>
   <dt>Location</dt><dd>Almaty, Kazakhstan</dd>
   <dt>Email</dt><dd><a href="mailto:softispower@gmail.com">softispower@gmail.com</a> — read every day, including for anything related to the Google Ads API</dd>
-  <dt>Website</dt><dd><a href="https://adman.kz">https://adman.kz</a></dd>
+  <dt>Website</dt><dd><a href="https://privlek.ai">https://privlek.ai</a></dd>
 </dl>
 
 </main>
@@ -229,7 +229,7 @@ footer a{margin-right:18px}
   <a href="privacy.html">Privacy Policy</a>
   <a href="terms.html">Terms of Service</a>
   <a href="mailto:softispower@gmail.com">Contact</a>
-  <p>© 2026 AdMan · Almaty, Kazakhstan · softispower@gmail.com</p>
+  <p>© 2026 Privlekai · Almaty, Kazakhstan · softispower@gmail.com</p>
 </footer>
 </body>
 </html>
