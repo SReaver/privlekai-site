@@ -198,12 +198,33 @@ footer a{margin-right:18px}
 </footer>
 
 <script>
+// A69: язык этих страниц переключается на месте — адреса уже отправлены в заявки
+// и не двигаются. Но выбор берётся из той же куки, что у лендинга и кабинета,
+// и пишется в неё же: иначе сквозной язык обрывался бы здесь.
+function readLocale(){
+  var m = document.cookie.match(/(?:^|;\s*)locale=([^;]*)/);
+  var v = m ? decodeURIComponent(m[1]) : '';
+  return (v === 'ru' || v === 'en') ? v : '';
+}
+
+function writeLocale(l){
+  var host = location.hostname.split('.').slice(-2).join('.');
+  var attrs = 'locale=' + l + ';path=/;max-age=31536000;samesite=lax';
+  if (host.indexOf('.') > 0 && host !== 'localhost') attrs += ';domain=.' + host + ';secure';
+  document.cookie = attrs;
+}
+
 function setLang(l){
   document.documentElement.className='lang-'+l;
   document.documentElement.lang=l;
   document.getElementById('b-ru').className=l==='ru'?'on':'';
   document.getElementById('b-en').className=l==='en'?'on':'';
+  writeLocale(l);
 }
+
+// Казахский интерфейс кабинета (A36) сюда ещё не доехал: у этих страниц
+// перевода на него нет, и молча показать не тот язык хуже, чем английский.
+setLang(readLocale() || 'en');
 </script>
 </body>
 </html>
