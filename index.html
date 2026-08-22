@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" class="lang-en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privlek.ai</title>
-<meta name="description" content="Privlek.ai is an advertising assistant for small business owners in Kazakhstan. It researches demand before you spend, builds and runs Google Ads Search campaigns in your own account, and reports results in plain language.">
+<title>Privlek.ai — реклама в Google Ads для малого бизнеса в Казахстане, без агентства</title>
+<meta name="description" content="Privlek.ai — сервис самостоятельной рекламы для владельцев небольших фирм в Казахстане: оценивает спрос до того, как потрачены деньги, собирает и ведёт поисковые кампании Google Ads в вашем собственном кабинете и объясняет результат обычными словами.">
+<link rel="alternate" hreflang="ru" href="https://privlek.ai/">
+<link rel="alternate" hreflang="en" href="https://privlek.ai/en/">
+<link rel="alternate" hreflang="x-default" href="https://privlek.ai/">
+<link rel="canonical" href="https://privlek.ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Privlek.ai">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Privlek.ai — реклама в Google Ads для малого бизнеса в Казахстане, без агентства">
+<meta property="og:description" content="Privlek.ai — сервис самостоятельной рекламы для владельцев небольших фирм в Казахстане: оценивает спрос до того, как потрачены деньги, собирает и ведёт поисковые кампании Google Ads в вашем собственном кабинете и объясняет результат обычными словами.">
+<meta property="og:url" content="https://privlek.ai/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Privlek.ai — реклама в Google Ads для малого бизнеса в Казахстане, без агентства">
+<meta name="twitter:description" content="Privlek.ai — сервис самостоятельной рекламы для владельцев небольших фирм в Казахстане: оценивает спрос до того, как потрачены деньги, собирает и ведёт поисковые кампании Google Ads в вашем собственном кабинете и объясняет результат обычными словами.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Privlek.ai",
+  "alternateName": "Привлекай",
+  "url": "https://privlek.ai/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Privlek.ai — сервис самостоятельной рекламы для владельцев небольших фирм в Казахстане: оценивает спрос до того, как потрачены деньги, собирает и ведёт поисковые кампании Google Ads в вашем собственном кабинете и объясняет результат обычными словами.",
+  "inLanguage": ["en", "ru"],
+  "offers": { "@type": "Offer", "category": "subscription" },
+  "privacyPolicy": "https://privlek.ai/privacy.html",
+  "termsOfService": "https://privlek.ai/terms.html",
+  "author": {
+    "@type": "Person",
+    "name": "Sergey Plotnikov",
+    "email": "softispower@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Almaty", "addressCountry": "KZ" }
+  }
+}
+</script>
 <style>
 :root{--ink:#14161a;--muted:#5b636e;--line:#e4e7ec;--accent:#1a56db;--bg:#fff;--soft:#f8f9fb}
 *{box-sizing:border-box}
@@ -18,8 +54,9 @@ header{border-bottom:1px solid var(--line)}
 nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
 nav a:hover{color:var(--accent)}
 .langs{display:flex;gap:4px}
-.langs button{border:1px solid var(--line);background:#fff;color:var(--muted);font:600 12px/1 inherit;padding:7px 11px;border-radius:6px;cursor:pointer}
-.langs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.langs a{border:1px solid var(--line);background:#fff;color:var(--muted);font:600 12px/1 inherit;padding:7px 11px;border-radius:6px;text-decoration:none;display:inline-block}
+.langs a:hover{border-color:var(--ink);color:var(--ink)}
+.langs a.on{background:var(--ink);border-color:var(--ink);color:#fff}
 h1{font-size:34px;line-height:1.2;letter-spacing:-.03em;margin:52px 0 18px}
 h2{font-size:21px;letter-spacing:-.02em;margin:48px 0 14px}
 h3{font-size:16px;margin:26px 0 6px}
@@ -42,24 +79,21 @@ a{color:var(--accent)}
 .cta.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
 footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 56px;color:var(--muted);font-size:14px}
 footer a{margin-right:18px}
-.lang-en [lang=ru],.lang-ru [lang=en]{display:none}
 @media(max-width:520px){h1{font-size:27px;margin-top:36px}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap bar">
-    <a class="logo" href="index.html">Privlek.ai</a>
+    <a class="logo" href="/">Privlek.ai</a>
     <div class="navright">
       <nav>
-        <a href="product.html" lang="en">Product tour</a>
-        <a href="product.html" lang="ru">Экраны продукта</a>
-        <a href="google-ads-api.html" lang="en">Google Ads API</a>
-        <a href="google-ads-api.html" lang="ru">Google Ads API</a>
+        <a href="product.html">Экраны продукта</a>
+        <a href="google-ads-api.html">Google Ads API</a>
       </nav>
       <div class="langs">
-        <button onclick="setLang('en')" id="b-en" class="on">EN</button>
-        <button onclick="setLang('ru')" id="b-ru">RU</button>
+        <a href="/" class="on" hreflang="ru">RU</a>
+        <a href="/en/" class="" hreflang="en">EN</a>
       </div>
     </div>
   </div>
@@ -67,88 +101,6 @@ footer a{margin-right:18px}
 
 <main class="wrap">
 
-<!-- ================= ENGLISH ================= -->
-<div lang="en">
-  <span class="status">In development · early access</span>
-  <h1>Privlek.ai — advertising for small businesses, explained in plain language</h1>
-  <p class="lead"><strong>Privlek.ai is a self-service advertising tool for owners of very small businesses in Kazakhstan.</strong> It researches demand before any money is spent, then builds, runs and reports on Google Ads Search campaigns inside the customer's own Google Ads account — explaining every decision in ordinary language, and never spending money without the owner's confirmation. Privlek.ai connects to a customer's Google Ads account through Google's official OAuth consent flow.</p>
-
-  <p><a class="cta" href="product.html">See the product screen by screen</a><a class="cta ghost" href="google-ads-api.html">How we use the Google Ads API</a></p>
-
-  <h2>What Privlek.ai asks of your Google Account, and why</h2>
-  <div class="note">
-    <p><strong>Privlek.ai requests one OAuth scope: <code>https://www.googleapis.com/auth/adwords</code></strong> — access to the Google Ads account you choose to connect. Nothing else is requested, and no other Google product is touched.</p>
-    <p><strong>What that access is used for.</strong> Reading search volume, competition and cost estimates so the tool can tell you whether advertising is worth starting; creating a Search campaign, ad groups, keywords and ads in your account after you confirm; changing budgets, bids and targeting while the campaign runs; and reading performance figures to report results back to you.</p>
-    <p><strong>What it is never used for.</strong> Google user data obtained through this scope is not sold, not transferred to anyone except as needed to provide these features, not used for advertising to you, and not read by humans except with your explicit consent, to investigate a security incident, or where required by law. The account stays yours: we do not require it to be linked beneath our manager account, and you can revoke access at any moment from inside Privlek.ai or from your Google Account settings.</p>
-    <p><strong>The scope Google grants is broader than what Privlek.ai uses.</strong> Google offers no narrower scope for the Google Ads API: <code>adwords</code> conveys everything the account owner can do, and its permission summary therefore also lists changing payment settings. <strong>Privlek.ai does not read, use or change payment settings, payment methods or billing information — ever.</strong> What it uses is listed above, and nothing else.</p>
-    <p><strong>You can enforce that by construction, not by trust.</strong> The tool inherits the access level of the person who connects the account: connect with a user who has <em>Standard</em> access rather than Admin or Billing, and payment settings are out of reach for Privlek.ai regardless of what the scope permits, while campaign creation, management and reporting continue to work. If your access is later reduced or revoked, Privlek.ai's access changes with it.</p>
-    <p>Full details, including retention and deletion, are in the <a href="https://privlek.ai/privacy.html">Privlek.ai Privacy Policy</a>.</p>
-  </div>
-
-  <h2>What Privlek.ai does</h2>
-
-  <div class="card">
-    <span class="tag">Demand research</span>
-    <h3>It measures demand before a single tenge is spent</h3>
-    <p>You describe what you sell. Privlek.ai finds the words people actually search for — which is rarely the wording the owner uses — and returns monthly search volume, an estimated cost per click and a competition level for each of them. Then it says plainly whether starting makes sense, and on which channel.</p>
-    <p>This is the step nobody else performs for this customer: an agency will not do it for a 100,000 ₸ budget, and an ad platform has no reason to talk anyone out of an expensive keyword.</p>
-  </div>
-
-  <div class="card">
-    <span class="tag">Campaign creation</span>
-    <h3>It builds the campaign and explains every decision</h3>
-    <p>Search campaign with geographic and language targeting, ad groups, keywords with match types, negative keywords, responsive search ads, callout extensions, a daily budget, a bidding strategy and a conversion action. Every one of those choices comes with a sentence in ordinary words explaining why it was made and what it costs you.</p>
-    <p>Nothing is created in your account until you have read the proposal and pressed confirm.</p>
-  </div>
-
-  <div class="card">
-    <span class="tag">Day-to-day management</span>
-    <h3>It runs the campaign, and tells you what it changed</h3>
-    <p>Pause, resume or remove campaigns, ad groups, ads and keywords. Change budgets, bidding strategies and targeting. Add negative keywords from the search terms that wasted money. Every change Privlek.ai proposes is logged with its reason, and the ones that cost money wait for your confirmation.</p>
-  </div>
-
-  <div class="card">
-    <span class="tag">Reporting</span>
-    <h3>It reports in numbers you already understand</h3>
-    <p>Clicks, cost, impressions and conversions at account, campaign, ad group, ad, keyword and search term level. Three depths: three numbers in a message, a screen with the breakdown, an export. A report ends with a recommendation rather than a number, because a table is something any ad account can already show you.</p>
-  </div>
-
-  <h2>Where it advertises</h2>
-  <p><strong>Google Ads is the primary channel</strong> and the one described in detail on this site. Privlek.ai creates and manages Search campaigns in the customer's own Google Ads account.</p>
-  <p>Privlek.ai is also being built to work with <strong>Meta (Facebook and Instagram)</strong> as a separate channel, for businesses whose customers are not searching for them yet. The choice between channels is part of what Privlek.ai explains rather than something the owner is expected to know.</p>
-  <div class="note">
-    <p><strong>Google Ads data is always reported separately</strong> from data of any other advertising platform. The two are never merged into a single blended number.</p>
-  </div>
-
-  <h2>How it works</h2>
-  <ol>
-    <li>You sign in to Privlek.ai with your own email and password.</li>
-    <li>You connect your own Google Ads account through Google's official OAuth authorization. The account stays yours; you can revoke access at any time from your Google Account.</li>
-    <li>Privlek.ai researches your business and your demand, and shows what it would advertise and what it expects that to cost.</li>
-    <li>You review the proposed campaign, change what you want, and confirm. Only then is anything created in your account.</li>
-    <li>Privlek.ai runs the campaign, reports results, and proposes changes — each of them explained.</li>
-  </ol>
-
-  <div class="note">
-    <p><strong>You pay Google directly</strong>, from your own account with your own payment method. Privlek.ai never receives, holds or spends your advertising budget, and takes no percentage of your ad spend.</p>
-    <p><strong>Nothing is published without your confirmation.</strong> Privlek.ai proposes and justifies; a human decides.</p>
-  </div>
-
-  <h2>What it costs</h2>
-  <p>Privlek.ai is paid for by the business owner, as a subscription for the software. The unit of pricing is a <strong>connected advertising channel</strong> — one platform in one ad account — and the second channel costs noticeably less than the first. You pay only for months in which you actually advertise.</p>
-  <p>There is a free tier that covers everything the software does without AI reasoning, plus one complete campaign, once. There is also a one-off purchase — a single campaign with a month of management, no subscription — for seasonal businesses that will never subscribe.</p>
-  <p>Privlek.ai does not earn a percentage of advertising spend. That model rewards spending more, which is the opposite of what this customer needs. Final prices will be published before launch.</p>
-
-  <h2>Where the product stands today</h2>
-  <p>Privlek.ai is in development, built by an independent developer in Kazakhstan. The product design is complete and documented; the accounts, the Google Cloud project and the OAuth consent flow are configured; the interface shown on the <a href="product.html">product tour</a> is presented as design mock-ups, not as screenshots of shipped software.</p>
-  <p>The first release covers Google Ads Search campaigns for a small group of pilot businesses in Kazakhstan, in Russian and English.</p>
-
-  <h2>Who is behind it</h2>
-  <p>Privlek.ai is built by Sergey Plotnikov, an independent software developer based in Almaty, Kazakhstan. To try it early, to ask a question, or for anything related to the Google Ads API, write to <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>. Mail to this address is read every day.</p>
-</div>
-
-<!-- ================= РУССКИЙ ================= -->
-<div lang="ru">
   <span class="status">В разработке · ранний доступ</span>
   <h1>Privlek.ai — реклама для малого бизнеса, объяснённая нормальным языком</h1>
   <p class="lead"><strong>Privlek.ai — сервис самостоятельной рекламы для владельцев совсем небольших фирм в Казахстане.</strong> Он оценивает спрос до того, как потрачены деньги, затем собирает, ведёт и показывает результат поисковых кампаний Google Ads в собственном кабинете клиента — объясняя каждое решение обычными словами и не тратя денег без подтверждения владельца. Подключение к кабинету клиента идёт через официальный экран согласия Google OAuth.</p>
@@ -225,36 +177,27 @@ footer a{margin-right:18px}
 
   <h2>Кто за этим стоит</h2>
   <p>Privlek.ai делает Сергей Плотников, независимый разработчик из Алматы, Казахстан. Хотите попробовать раньше остальных, есть вопрос или речь про Google Ads API — напишите на <a href="mailto:softispower@gmail.com">softispower@gmail.com</a>. Почта читается каждый день.</p>
-</div>
 
 </main>
 
 <footer class="wrap">
-  <div lang="en">
-    <a href="product.html">Product tour</a>
-    <a href="google-ads-api.html">Google Ads API</a>
-    <a href="https://privlek.ai/privacy.html">Privacy Policy</a>
-    <a href="https://privlek.ai/terms.html">Terms of Service</a>
-    <a href="mailto:softispower@gmail.com">Contact</a>
-    <p>© 2026 Privlek.ai · Almaty, Kazakhstan · softispower@gmail.com</p>
-  </div>
-  <div lang="ru">
     <a href="product.html">Экраны продукта</a>
     <a href="google-ads-api.html">Google Ads API</a>
     <a href="https://privlek.ai/privacy.html">Политика конфиденциальности</a>
     <a href="https://privlek.ai/terms.html">Условия использования</a>
     <a href="mailto:softispower@gmail.com">Написать нам</a>
     <p>© 2026 Privlek.ai · Алматы, Казахстан · softispower@gmail.com</p>
-  </div>
 </footer>
 
 <script>
-function setLang(l){
-  document.documentElement.className='lang-'+l;
-  document.documentElement.lang=l;
-  document.getElementById('b-ru').className=l==='ru'?'on':'';
-  document.getElementById('b-en').className=l==='en'?'on':'';
-}
+// A69: куки переносит выбор языка на app.privlek.ai; язык самой страницы задан адресом.
+(function(){
+  var lang = document.documentElement.lang;
+  var host = location.hostname.split('.').slice(-2).join('.');
+  var attrs = 'locale=' + lang + ';path=/;max-age=31536000;samesite=lax';
+  if (host.indexOf('.') > 0 && host !== 'localhost') attrs += ';domain=.' + host + ';secure';
+  document.cookie = attrs;
+})();
 </script>
 </body>
 </html>
