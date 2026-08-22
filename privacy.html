@@ -74,6 +74,9 @@ footer a{margin-right:18px}
 <li><code>instagram_basic</code> — чтение связанного профиля Instagram и его публикаций для продвижения существующего поста.</li>
 </ul>
 
+<p><strong>Область доступа шире, чем сервис использует.</strong> У Google Ads API нет более узкой области, чем <code>adwords</code>: она даёт всё, что умеет владелец кабинета, и поэтому Google в описании разрешения упоминает в том числе изменение платёжных настроек. <strong>Сервис не читает, не использует и не изменяет платёжные настройки, способы оплаты и платёжные данные.</strong> Деньги за рекламу вы платите Google напрямую со своего счёта; сервис бюджет не получает, не хранит и не расходует.</p>
+<p>Уровень доступа сервиса совпадает с уровнем доступа того, кто подключил кабинет. Если подключить пользователем с уровнем «Стандартный», платёжные настройки останутся недоступны сервису независимо от области доступа. При понижении или отзыве вашего доступа доступ сервиса меняется вместе с ним.</p>
+
 <h2>2. Зачем мы их используем</h2>
 <ul>
 <li>Оценить спрос и вероятную стоимость рекламы до того, как вы потратите деньги.</li>
@@ -153,6 +156,9 @@ footer a{margin-right:18px}
 <li><code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>pages_manage_ads</code> — selecting your Page and using it in advertising.</li>
 <li><code>instagram_basic</code> — reading the linked Instagram profile and its posts in order to promote an existing post.</li>
 </ul>
+
+<p><strong>The granted scope is broader than the service uses.</strong> The Google Ads API offers no scope narrower than <code>adwords</code>: it conveys everything the account owner can do, which is why Google's permission summary also mentions changing payment settings. <strong>The service does not read, use or change payment settings, payment methods or billing information.</strong> You pay Google directly from your own account; the service never receives, holds or spends your advertising budget.</p>
+<p>The service's access level equals that of the person who connected the account. Connecting with a user who holds <em>Standard</em> access keeps payment settings out of the service's reach regardless of the scope. If your own access is reduced or revoked, the service's access changes with it.</p>
 
 <h2>2. Why we use it</h2>
 <ul>
